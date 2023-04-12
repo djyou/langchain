@@ -36,6 +36,9 @@ class ConversationBufferMemory(BaseChatMemory):
 
     def load_memory_variables(self, inputs: Dict[str, Any]) -> Dict[str, Any]:
         """Return history buffer."""
+        print(f'---------------------------------{__class__.__name__}.load_memory_variables')
+        print(inputs)
+        print(self.buffer)
         return {self.memory_key: self.buffer}
 
 

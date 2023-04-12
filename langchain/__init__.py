@@ -55,7 +55,7 @@ from langchain.utilities.wikipedia import WikipediaAPIWrapper
 from langchain.utilities.wolfram_alpha import WolframAlphaAPIWrapper
 from langchain.vectorstores import FAISS, ElasticVectorSearch
 
-__version__ = metadata.version(__package__)
+__version__ = '1.0'  # metadata.version(__package__)
 del metadata  # optional, avoids polluting the results of dir(__package__)
 
 verbose: bool = False

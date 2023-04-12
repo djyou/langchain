@@ -51,6 +51,8 @@ class BaseChatModel(BaseLanguageModel, ABC):
         self, messages: List[List[BaseMessage]], stop: Optional[List[str]] = None
     ) -> LLMResult:
         """Top Level call"""
+        print(f'---------------------------------{__class__.__name__}.generate')
+        print(messages)
         results = [self._generate(m, stop=stop) for m in messages]
         llm_output = self._combine_llm_outputs([res.llm_output for res in results])
         generations = [res.generations for res in results]
@@ -70,6 +72,8 @@ class BaseChatModel(BaseLanguageModel, ABC):
     def generate_prompt(
         self, prompts: List[PromptValue], stop: Optional[List[str]] = None
     ) -> LLMResult:
+        print(f'---------------------------------{__class__.__name__}.generate_prompt')
+        print(prompts)
         prompt_messages = [p.to_messages() for p in prompts]
         prompt_strings = [p.to_string() for p in prompts]
         self.callback_manager.on_llm_start(

@@ -58,6 +58,8 @@ class LLMChain(Chain):
 
     def generate(self, input_list: List[Dict[str, Any]]) -> LLMResult:
         """Generate LLM result from inputs."""
+        print(f'---------------------------------{__class__.__name__}.generate')
+        print(input_list)
         prompts, stop = self.prep_prompts(input_list)
         return self.llm.generate_prompt(prompts, stop)
 
@@ -70,6 +72,8 @@ class LLMChain(Chain):
         self, input_list: List[Dict[str, Any]]
     ) -> Tuple[List[PromptValue], Optional[List[str]]]:
         """Prepare prompts from inputs."""
+        print(f'---------------------------------{__class__.__name__}.prep_prompts')
+        print(input_list)
         stop = None
         if "stop" in input_list[0]:
             stop = input_list[0]["stop"]
@@ -115,6 +119,8 @@ class LLMChain(Chain):
 
     def apply(self, input_list: List[Dict[str, Any]]) -> List[Dict[str, str]]:
         """Utilize the LLM generate method for speed gains."""
+        print(f'---------------------------------{__class__.__name__}.apply')
+        print(input_list)
         response = self.generate(input_list)
         return self.create_outputs(response)
 
@@ -148,6 +154,8 @@ class LLMChain(Chain):
 
                 completion = llm.predict(adjective="funny")
         """
+        print(f'---------------------------------{__class__.__name__}.predict')
+        print(kwargs)
         return self(kwargs)[self.output_key]
 
     async def apredict(self, **kwargs: Any) -> str:

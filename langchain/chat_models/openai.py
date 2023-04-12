@@ -219,6 +219,8 @@ class ChatOpenAI(BaseChatModel):
 
     def completion_with_retry(self, **kwargs: Any) -> Any:
         """Use tenacity to retry the completion call."""
+        print(f'---------------------------------{__class__.__name__}.completion_with_retry')
+        print(kwargs)
         retry_decorator = self._create_retry_decorator()
 
         @retry_decorator
@@ -244,6 +246,8 @@ class ChatOpenAI(BaseChatModel):
     def _generate(
         self, messages: List[BaseMessage], stop: Optional[List[str]] = None
     ) -> ChatResult:
+        print(f'---------------------------------{__class__.__name__}._generate')
+        print(messages)
         message_dicts, params = self._create_message_dicts(messages, stop)
         if self.streaming:
             inner_completion = ""

@@ -103,6 +103,9 @@ class Chain(BaseModel, ABC):
                 chain will be returned. Defaults to False.
 
         """
+        print(f'---------------------------------{__class__.__name__}.__call__')
+        print(inputs)
+
         inputs = self.prep_inputs(inputs)
         self.callback_manager.on_chain_start(
             {"name": self.__class__.__name__},
@@ -175,6 +178,8 @@ class Chain(BaseModel, ABC):
 
     def prep_inputs(self, inputs: Union[Dict[str, Any], Any]) -> Dict[str, str]:
         """Validate and prep inputs."""
+        print(f'---------------------------------{__class__.__name__}.prep_inputs')
+        print(inputs)
         if not isinstance(inputs, dict):
             _input_keys = set(self.input_keys)
             if self.memory is not None:
